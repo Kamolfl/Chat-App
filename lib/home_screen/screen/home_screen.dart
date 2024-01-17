@@ -1,3 +1,4 @@
+import 'package:chat_app/home_screen/screen/chat_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../model/chat_user.dart';
@@ -19,11 +20,11 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   List<Color> avatarColors = [
-    Colors.blue,
     Colors.green,
+    Colors.red,
+    Colors.blue,
     Colors.orange,
     Colors.purple,
-    Colors.red,
     Colors.teal,
     Colors.indigo,
     Colors.amber,
@@ -45,24 +46,33 @@ class _HomeScreenState extends State<HomeScreen> {
                 const Text('Чаты', style: TextStyle(fontSize: 32, fontWeight: FontWeight.w600)),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                 Container(
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height * 0.08,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: const Color(0xFFEDF2F6),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: TextFormField(
-                      controller: _searchController,
-                      decoration: const InputDecoration(
-                        prefixIcon: Icon(Icons.search, size: 40, color: Color(0xFF9DB7CB)),
-                        labelText: 'Поиск',
-                        labelStyle: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xFF9DB7CB),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                      children: [
+                        Image.asset('assets/images/Search_s.png'),
+                        SizedBox(width: MediaQuery.of(context).size.width * 0.01),
+                        Expanded(
+                          child: TextFormField(
+                            controller: _searchController,
+                            decoration: const InputDecoration(
+                              hintText: 'Поиск',
+                              hintStyle: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFF9DB7CB),
+                              ),
+                              border: InputBorder.none,
+                            ),
+                          ),
                         ),
-                        border: InputBorder.none,
-                      ),
+                      ],
                     ),
                   ),
                 ),
@@ -85,14 +95,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         // height: MediaQuery.of(context).size.height * 0.12,
                         child: InkWell(
                           onTap: () {
-
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChatScreen(user: user, avatarColor: avatarColors[index])));
                           },
                           child: Row(
                             children: [
                               CircleAvatar(
                                 radius: 35,
                                 backgroundColor: avatarColors[index],
-                                child: Text('${user.firstName[0]}${user.lastName[0]}'),
+                                child: Text('${user.firstName[0]}${user.lastName[0]}', style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w700)),
                               ),
                               SizedBox(width: MediaQuery.of(context).size.width * 0.02),
                               Column(
