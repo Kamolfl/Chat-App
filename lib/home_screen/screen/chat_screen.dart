@@ -46,6 +46,8 @@ class _ChatScreenState extends State<ChatScreen> {
           Row(
             children: [
               Container(
+                width: MediaQuery.of(context).size.width * 0.15,
+                height: MediaQuery.of(context).size.height * 0.08,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: const Color(0xFFEDF2F6),
@@ -55,8 +57,12 @@ class _ChatScreenState extends State<ChatScreen> {
                   child: Image.asset('assets/images/Attach.png'),
                 ),
               ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.02,
+              ),
               Container(
-                width: MediaQuery.of(context).size.width * 0.7,
+                width: MediaQuery.of(context).size.width * 0.65,
+                height: MediaQuery.of(context).size.height * 0.08,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: const Color(0xFFEDF2F6),
@@ -75,6 +81,21 @@ class _ChatScreenState extends State<ChatScreen> {
                       border: InputBorder.none,
                     ),
                   ),
+                ),
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.02,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.15,
+                height: MediaQuery.of(context).size.height * 0.08,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: const Color(0xFFEDF2F6),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: Image.asset('assets/images/Audio.png'),
                 ),
               ),
             ],
