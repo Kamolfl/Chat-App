@@ -50,7 +50,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   String firstName = userData['name'] ?? '';
                   String lastName = userData['lastName'] ?? '';
                   String date = userData['date'] ?? '';
-                  return ChatUser(firstName: firstName, lastName: lastName, date: date);
+                  String myMessage = userData['myMessage'] ?? '';
+                  String youMessage = userData['youMessage'] ?? '';
+                  return ChatUser(firstName: firstName, lastName: lastName, date: date, youMessage: youMessage, myMessage: myMessage);
                 });
                 return Expanded(
                   child: ListView.builder(
@@ -84,7 +86,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text('${user.firstName} ${user.lastName}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-                                          Text('rfgjg'),
+                                          user.myMessage.isEmpty
+                                          ? Text(user.youMessage)
+                                          : Row(
+                                            children: [
+                                              Text('Вы: ', style: TextStyle(color: Color(0xFF2B333E), fontSize: 12, fontWeight: FontWeight.w500)),
+                                              Text(user.myMessage, style: TextStyle(color: Color(0xFF5E7A90), fontSize: 12, fontWeight: FontWeight.w500)),
+                                            ],
+                                          ),
                                         ]
                                     ),
                                     Spacer(),

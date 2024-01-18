@@ -33,91 +33,8 @@ class _ChatScreenState extends State<ChatScreen> {
           _buildMyAppBar(context),
           const Divider(),
           const Spacer(),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Row(
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.35,
-                  height: MediaQuery.of(context).size.height * 0.005,
-                  color: const Color(0xFFEDF2F6),
-                ),
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text('27.01.22'),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.35,
-                  height: MediaQuery.of(context).size.height * 0.005,
-                  color: const Color(0xFFEDF2F6),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  constraints: const BoxConstraints(
-                    minHeight: 50,
-                  ),
-                  decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                        bottomLeft: Radius.circular(20),
-                        bottomRight: Radius.circular(0),
-                      ),
-                      color: Color(0xFF3CED78)
-                  ),
-                  child: Row(
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Text(
-                            "Сделай мне кофе, пожалуйста",
-                            style: TextStyle(
-                              color: Color(0xFF00521C),
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            )
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.only(top: 10),
-                            child: Text(
-                                "21:41",
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xFF00521C)
-                                )
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 26,left: 3, right: 15, bottom: 8),
-                            child: Image.asset(
-                              "assets/images/Read.png",
-                              width: 12,
-                              height: 7,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 29),
-                  child: Image.asset('assets/images/VectorRight.png'),
-                )
-              ],
-            ),
-          ),
+          _buildContainerDate(context, '27.01.22'),
+          _buildMessageSend(context, 'Сделай мне кофе, пожалуйста', '21:41', 'assets/images/Read.png', 'assets/images/VectorRight.png'),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -174,92 +91,76 @@ class _ChatScreenState extends State<ChatScreen> {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Row(
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.35,
-                  height: MediaQuery.of(context).size.height * 0.005,
-                  color: const Color(0xFFEDF2F6),
-                ),
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text('Сегодня'),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.35,
-                  height: MediaQuery.of(context).size.height * 0.005,
-                  color: const Color(0xFFEDF2F6),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  constraints: const BoxConstraints(
-                    minHeight: 50,
-                  ),
-                  decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                        bottomLeft: Radius.circular(20),
-                        bottomRight: Radius.circular(0),
-                      ),
-                      color: Color(0xFF3CED78)
-                  ),
-                  child: Row(
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Text(
-                            "Уже сделал?",
-                            style: TextStyle(
-                              color: Color(0xFF00521C),
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            )
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.only(top: 10),
-                            child: Text(
-                                "21:41",
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xFF00521C)
-                                )
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 26,left: 3, right: 15, bottom: 8),
-                            child: Image.asset(
-                              "assets/images/UnRead.png",
-                              width: 12,
-                              height: 7,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 29),
-                  child: Image.asset('assets/images/VectorRight.png'),
-                )
-              ],
-            ),
-          ),
+          _buildContainerDate(context, 'Сегодня'),
+          _buildMessageSend(context, 'Уже сделал?', '21:41', 'assets/images/UnRead.png', 'assets/images/VectorRight.png'),
           _buildInputArea(context),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMessageSend(BuildContext context, String title, String subtitle, String firstImage, String secondImage) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Container(
+            constraints: const BoxConstraints(
+              minHeight: 50,
+            ),
+            decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(0),
+                ),
+                color: Color(0xFF3CED78)
+            ),
+            child: Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                      title,
+                      style: TextStyle(
+                        color: Color(0xFF00521C),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      )
+                  ),
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 10),
+                      child: Text(
+                          subtitle,
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xFF00521C)
+                          )
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 26,left: 3, right: 15, bottom: 8),
+                      child: Image.asset(
+                        firstImage,
+                        width: 12,
+                        height: 7,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 29),
+            child: Image.asset(secondImage),
+          )
         ],
       ),
     );
@@ -364,6 +265,30 @@ class _ChatScreenState extends State<ChatScreen> {
               Text('${widget.user.firstName} ${widget.user.lastName}', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
               const Text('В сети', style: TextStyle(color: Color(0xFF5E7A90)))
             ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildContainerDate(BuildContext context, String title) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: Row(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width * 0.35,
+            height: MediaQuery.of(context).size.height * 0.005,
+            color: const Color(0xFFEDF2F6),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(title),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.35,
+            height: MediaQuery.of(context).size.height * 0.005,
+            color: const Color(0xFFEDF2F6),
           ),
         ],
       ),
